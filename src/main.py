@@ -1,16 +1,19 @@
-from src.Commands import Commands
+import sys
+from Commands import Commands
 
 if __name__ == "__main__":
     commands = Commands()
 
-    for line in str.stdin:
-        input = line.split(" ")
+    for line in sys.stdin:
+        input = line.strip("\n").split(" ")
+
         if (input[0] == "START"):
             commands.start(int(input[1]))
         elif (input[0] == "BEGIN"):
             commands.begin()
         elif (input[0] == "TURN"):
-            commands.turn(int(input[1]), int(input[2]))
+            splitted = input[1].split(",")
+            commands.turn(int(splitted[0]), int(splitted[1]))
         elif (input[0] == "BOARD"):
             commands.board(input[1])
         elif (input[0] == "INFO"):
