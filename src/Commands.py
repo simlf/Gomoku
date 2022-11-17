@@ -1,12 +1,13 @@
 import random
+import sys
 class Commands:
     def __init__(self):
-        self.size = 0
-        self.board = [[]]
+        self._size = 0
+        self._board = [[]]
 
     def createBoard(self, size):
-        self.size = size
-        self.board = [[0 for x in range(size)] for y in range(size)]
+        self._size = size
+        self._board = [[0 for x in range(self._size)] for y in range(self._size)]
 
     def end(self):
         quit()
@@ -26,20 +27,23 @@ class Commands:
         j = random.randint(0, self.size)
         print(i,", ", j, flush=True)
 
-    def board(self, str):
-        for line in str.splitlines():
-            if (line == "DONE"):
-                print("9, 9", flush=True)
-            input = line.split(",")
-            x = int(input[0])
-            y = int(input[1])
-            if (input[2] == "1"):
-                self.Board[x][y] = 1
-            elif (input[2] == "2"):
-                self.Board[x][y] = 2
+    def board(self):
+        while True:
+            line = sys.stdin.readline().rstrip("\n")
+
+            if line == "DONE":
+                print(self._board, flush=True)
+                print("10, 10", flush=True)
+                break
+            else:
+                instruction = line.split(",")
+                self._board[int(instruction[0])][int(instruction[1])] = int(instruction[2])
 
     def info(key, value):
         pass
 
     def about(self):
         pass
+
+    def debug(self, str):
+        print(str, flush=True)
