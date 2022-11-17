@@ -15,10 +15,12 @@ if __name__ == "__main__":
             splitted = input[1].split(",")
             commands.turn(int(splitted[0]), int(splitted[1]))
         elif (input[0] == "BOARD"):
-            commands.board(input[1])
+            commands.board()
         elif (input[0] == "INFO"):
             commands.info(input[1], input[2])
         elif (input[0] == "ABOUT"):
             commands.about()
         elif (input[0] == "END"):
             commands.end()
+        elif (input[0] == "DEBUG"):
+            commands.debug(input[1])
