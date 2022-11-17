@@ -2,6 +2,8 @@
 
 import random
 import sys
+
+import Utils
 class Commands:
     def __init__(self):
         self._size = 0
@@ -34,7 +36,7 @@ class Commands:
             line = sys.stdin.readline().rstrip("\n")
 
             if line == "DONE":
-                print(self._board, flush=True)
+                Utils.printBoard(self._board)
                 print("10, 10", flush=True)
                 break
             else:
