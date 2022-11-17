@@ -3,8 +3,12 @@ from Commands import Commands
 
 if __name__ == "__main__":
     commands = Commands()
+    readFrom = sys.stdin
 
-    for line in sys.stdin:
+    if len(sys.argv) > 1:
+        readFrom = open(sys.argv[1], "r")
+
+    for line in readFrom:
         input = line.strip("\n").split(" ")
 
         if (input[0] == "START"):
