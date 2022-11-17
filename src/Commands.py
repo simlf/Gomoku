@@ -32,6 +32,7 @@ class Commands:
             line = sys.stdin.readline().rstrip("\n")
 
             if line == "DONE":
+                print(self._board, flush=True)
                 print("10, 10", flush=True)
                 break
             else:
