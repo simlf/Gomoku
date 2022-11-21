@@ -1,3 +1,6 @@
 src/__pycache__/
+__pycache__/
 .vscode/
 .DS_Store
+
+pbrain-gomoku-ai
