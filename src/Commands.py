@@ -19,9 +19,9 @@ class Commands:
     def start(self, size):
         if (size < 5):
             print("ERROR", flush=True)
-        self.createBoard(size)
-
-        print("OK", flush=True)
+        else:
+            self.createBoard(size)
+            print("OK", flush=True)
 
     def begin(self):
         print("10, 10", flush=True)

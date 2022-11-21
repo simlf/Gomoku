@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
-from Commands import Commands
+from src.Commands import Commands
 
 if __name__ == "__main__":
     commands = Commands()
@@ -30,3 +30,5 @@ if __name__ == "__main__":
             commands.end()
         elif (input[0] == "DEBUG"):
             commands.debug(input[1])
+
+    exit(0)
