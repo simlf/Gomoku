@@ -27,13 +27,13 @@ class Commands:
         print("10, 10", flush=True)
 
     def turn(self, x, y):
-        i = random.randint(0, self.size)
-        j = random.randint(0, self.size)
+        i = random.randint(0, self._size)
+        j = random.randint(0, self._size)
         print(i,", ", j, flush=True)
 
     def board(self):
         while True:
-            line = sys.stdin.readline().rstrip("\n")
+            line = sys.stdin.readline().rstrip("").rstrip("\n")
 
             if line == "DONE":
                 src.Utils.printBoard(self._board)
