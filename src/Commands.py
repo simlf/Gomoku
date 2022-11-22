@@ -20,8 +20,8 @@ class Commands:
         if (size < 5):
             print("ERROR", flush=True)
         else:
+            print('OK', flush=True)
             self.createBoard(size)
-            print("OK", flush=True)
 
     def begin(self):
         print("10, 10", flush=True)
@@ -29,7 +29,7 @@ class Commands:
     def turn(self, x, y):
         i = random.randint(0, self._size)
         j = random.randint(0, self._size)
-        print(i,", ", j, flush=True)
+        print(i,",", j, flush=True)
 
     def board(self):
         while True:
@@ -44,10 +44,10 @@ class Commands:
                 self._board[int(instruction[0])][int(instruction[1])] = int(instruction[2])
 
     def info(key, value):
-        pass
+        return
 
     def about(self):
-        pass
+        return
 
     def debug(self, str):
         print(str, flush=True)
