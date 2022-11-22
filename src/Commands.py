@@ -27,9 +27,7 @@ class Commands:
         print("10, 10", flush=True)
 
     def turn(self, x, y):
-        i = random.randint(0, self._size)
-        j = random.randint(0, self._size)
-        print(i,",", j, flush=True)
+        print(x,',',y, sep='', flush=True)
 
     def board(self):
         while True:
