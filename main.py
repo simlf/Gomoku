@@ -56,8 +56,8 @@ def play():
             else:
                 line = line[1].split(',')
                 board[int(line[1])][int(line[0])] = 'X'
-            i = random.randint(1, 20)
-            j = random.randint(1, 20)
+            i = random.randint(1, sizeGame)
+            j = random.randint(1, sizeGame)
             board[i][j] = 'O'
             print("%d,%d" % (j, i))
         if line[0] == 'RESTART':
