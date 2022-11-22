@@ -57,6 +57,9 @@ def play():
                 board[int(line[1])][int(line[0])] = 'X'
             i = random.randint(0, sizeGame - 1)
             j = random.randint(0, sizeGame - 1)
+            while board[i][j] != '-':
+                i = random.randint(0, sizeGame - 1)
+                j = random.randint(0, sizeGame - 1)
             board[i][j] = 'O'
             print("%d,%d" % (j, i), flush=True)
         if line[0] == 'RESTART':
