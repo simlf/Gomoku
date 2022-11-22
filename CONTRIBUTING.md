@@ -4,6 +4,6 @@ Then with a short description telling what is the purpose of the commit.
 - Bug fix -> :bug:
 - Factorization -> :recycle:
 - Add feature -> :sparkles:
-- Fix git conflicts -> :rotating_lights:
+- Fix git conflicts -> :rotating_light:
 - WIP -> :construction:
 - Update -> :beers:
