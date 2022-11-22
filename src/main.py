@@ -23,7 +23,8 @@ if __name__ == "__main__":
         elif (input[0] == "BOARD"):
             commands.board()
         elif (input[0] == "INFO"):
-            commands.info(input[1], input[2])
+            splitted = input[1].split(" ")
+            commands.info(input[1])
         elif (input[0] == "ABOUT"):
             commands.about()
         elif (input[0] == "END"):
