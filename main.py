@@ -40,14 +40,13 @@ def fillTheBoard(board):
     return board
 
 def play():
-    global start
     board = [['-']*(sizeGame + 1) for i in range(sizeGame + 1)]
     while 1:
         line = input().split(' ')
         if line[0] == 'BEGIN':
             start = 1
             board[4][4] = 'O'
-            print("%d,%d" % (4, 4))
+            print("%d,%d" % (4, 4), flush=True)
         elif line[0] == 'END':
             return 84
         elif line[0] == 'TURN' or line[0] == 'BOARD':
@@ -56,23 +55,22 @@ def play():
             else:
                 line = line[1].split(',')
                 board[int(line[1])][int(line[0])] = 'X'
-            i = random.randint(1, sizeGame)
-            j = random.randint(1, sizeGame)
+            i = random.randint(0, sizeGame - 1)
+            j = random.randint(0, sizeGame - 1)
             board[i][j] = 'O'
-            print("%d,%d" % (j, i))
+            print("%d,%d" % (j, i), flush=True)
         if line[0] == 'RESTART':
             break
     return 0
 
 def start():
-    global sizeGame
     start = input().split(' ')
     if len(start) == 2 and start[0] == 'START' and 5 <= int(start[1]) <= 20:
-        print("OK")
+        print("OK", flush=True)
         sizeGame = int(start[1]) - 1
         return 0
     else:
-        print("ERROR")
+        print("ERROR", flush=True)
     return 0
 
 
