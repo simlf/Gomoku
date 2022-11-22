@@ -6,29 +6,18 @@ import random
 sizeGame = 20
 start = 0
 
-#  if len(sys.argv) > 1:
-#         readFrom = open(sys.argv[1], "r")
-#     for line in readFrom:
-#         input = line.strip("\n").split(" ")
-#         if (input[0] == "START"):
-#             commands.start(int(input[1]))
-#         elif (input[0] == "BEGIN"):
-#             commands.begin()
-#         elif (input[0] == "TURN"):
-#             splitted = input[1].split(",")
-#             commands.turn(int(splitted[0]), int(splitted[1]))
-#         elif (input[0] == "BOARD"):
-#             commands.board()
-#         elif (input[0] == "INFO"):
-#             commands.info(input[1], input[2])
-#         elif (input[0] == "ABOUT"):
-#             commands.about()
-#         elif (input[0] == "END"):
-#             commands.end()
-#         elif (input[0] == "DEBUG"):
-#             commands.debug(input[1])
+def printBoard(board):
+    for row in board:
+        print(row)
 
-#     exit(0)
+def randomPlay(board):
+    i = random.randint(0, sizeGame - 1)
+    j = random.randint(0, sizeGame - 1)
+    while board[i][j] != '-':
+        i = random.randint(0, sizeGame - 1)
+        j = random.randint(0, sizeGame - 1)
+    return i, j
+
 def fillTheBoard(board):
     line = input().split(',')
     while line[0] != 'DONE':
@@ -55,11 +44,7 @@ def play():
             else:
                 line = line[1].split(',')
                 board[int(line[1])][int(line[0])] = 'X'
-            i = random.randint(0, sizeGame - 1)
-            j = random.randint(0, sizeGame - 1)
-            while board[i][j] != '-':
-                i = random.randint(0, sizeGame - 1)
-                j = random.randint(0, sizeGame - 1)
+            i, j = randomPlay(board)
             board[i][j] = 'O'
             print("%d,%d" % (j, i), flush=True)
         if line[0] == 'RESTART':

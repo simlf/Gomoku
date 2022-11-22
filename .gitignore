@@ -2,13 +2,9 @@ src/__pycache__/
 __pycache__/
 .vscode/
 .DS_Store
-
 pbrain-gomoku-ai
-
 build/
 dist/
 createExeFile.sh
 main.spec
-src/build/
-src/build/
-src/main.spec
+pbrain-gomoku-ai.spec
