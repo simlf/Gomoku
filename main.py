@@ -28,6 +28,12 @@ def fillTheBoard(board):
         line = input().split(',')
     return board
 
+def check_direction(board, y, x):
+    if board[y][x + 1] == '1':
+        print("left")
+    else:
+        print("other direction")
+
 def play():
     board = [['-']*(sizeGame + 1) for i in range(sizeGame + 1)]
     while 1:
@@ -44,6 +50,13 @@ def play():
             else:
                 line = line[1].split(',')
                 board[int(line[1])][int(line[0])] = 'X'
+            board[0][0] = '1'
+            # board[0][1] = '1'
+            for y in range(sizeGame):
+                for x in range(sizeGame):
+                    if board[y][x] == '1':
+                        check_direction(board, y, x)
+                        break
             i, j = randomPlay(board)
             board[i][j] = 'O'
             print("%d,%d" % (j, i), flush=True)
