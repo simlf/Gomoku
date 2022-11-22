@@ -5,7 +5,7 @@
 ## Makefile
 ##
 
-SRC = 	src/main.py
+SRC = 	./main.py
 
 NAME	=	pbrain-gomoku-ai
 
