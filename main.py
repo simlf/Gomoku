@@ -29,13 +29,37 @@ def fillTheBoard(board):
     return board
 
 def check_direction(board, y, x):
-    if board[y][x + 1] == '1':
-        print("left")
-    else:
-        print("other direction")
+    nb = 0
+    size = 0
+    max = 4
+    tmp = 0
+    if board[y][x + 1] == '1' or board[y][x + 2] == '1':
+        while (nb < max):
+            if (board[y][x + nb] == '-' and max <= 4):
+                max += 1
+                tmp = x + nb
+            if (board[y][x + nb] == '1'):
+                size += 1
+            nb += 1
+        if (max == 5 and size == 4):
+            return (y, tmp)
+        elif (size == 4 and board[y][x + nb] != '2'):    
+            return (y, x + nb)
+        elif (size == 4 and x - 1 >= 0 and board[y][x - 1] == '-'):
+            return (y, x - 1)
+    elif board[y + 1][x] == '1':
+        while (nb < max):
+            if (board[y + nb][x] == '1'):
+                size += 1
+            nb += 1
+        if (size == 4):
+            return (y + nb, x)
+    return (-1, -1)
 
 def play():
     board = [['-']*(sizeGame + 1) for i in range(sizeGame + 1)]
+    y = 0
+    x = 0
     while 1:
         line = input().split(' ')
         if line[0] == 'BEGIN':
@@ -51,14 +75,24 @@ def play():
                 line = line[1].split(',')
                 board[int(line[1])][int(line[0])] = 'X'
             board[0][0] = '1'
-            # board[0][1] = '1'
+            board[1][0] = '1'
+            board[2][0] = '1'
+            board[3][0] = '1'
+            value = False
             for y in range(sizeGame):
+                if value == True:
+                    break
                 for x in range(sizeGame):
                     if board[y][x] == '1':
-                        check_direction(board, y, x)
+                        print("hello")
+                        i, j = check_direction(board, y, x)
+                        print(i, j)
+                        value = True
+                        y = sizeGame
                         break
-            i, j = randomPlay(board)
-            board[i][j] = 'O'
+            if (i >= 0 or j >= 0):
+                board[i][j] = '1'
+            printBoard(board)
             print("%d,%d" % (j, i), flush=True)
         if line[0] == 'RESTART':
             break
