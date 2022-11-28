@@ -49,11 +49,18 @@ def check_direction(board, y, x):
             return (y, x - 1)
     elif board[y + 1][x] == '1':
         while (nb < max):
+            if (board[y+ nb][x] == '-' and max <= 4):
+                max += 1
+                tmp = y + nb
             if (board[y + nb][x] == '1'):
                 size += 1
             nb += 1
-        if (size == 4):
+        if (max == 5 and size == 4):
+            return (tmp, x)
+        elif (size == 4 and board[y + nb][x] != '2'):    
             return (y + nb, x)
+        elif (size == 4 and y - 1 >= 0 and board[y - 1][x] == '-'):
+            return (y - 1, x)
     return (-1, -1)
 
 def play():
@@ -74,10 +81,11 @@ def play():
             else:
                 line = line[1].split(',')
                 board[int(line[1])][int(line[0])] = 'X'
-            board[0][0] = '1'
+            board[4][0] = '1'
             board[1][0] = '1'
             board[2][0] = '1'
             board[3][0] = '1'
+            board[5][0] = '2'
             value = False
             for y in range(sizeGame):
                 if value == True:
