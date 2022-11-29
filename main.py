@@ -33,7 +33,7 @@ def check_direction(board, y, x, sizeGame):
     size = 0
     max = 4
     tmp = 0
-    if board[y][x + 1] == '1' or board[y][x + 2] == '1':
+    if  ((x + 1 < sizeGame) and (board[y][x + 1] == '1' or board[y][x + 2] == '1')):
         while (nb < max):
             if (board[y][x + nb] == '-' and max <= 4):
                 max += 1
@@ -43,11 +43,11 @@ def check_direction(board, y, x, sizeGame):
             nb += 1
         if (max == 5 and size == 4):
             return (y, tmp)
-        elif (size == 4 and board[y][x + nb] != '2'):    
+        elif ((x + nb <= sizeGame) and (size == 4 and board[y][x + nb] != '2')):    
             return (y, x + nb)
         elif (size == 4 and x - 1 >= 0 and board[y][x - 1] == '-'):
             return (y, x - 1)
-    elif board[y + 1][x] == '1' or board[y + 2][x] == '1':
+    elif ((y + 1 < sizeGame) and (board[y + 1][x] == '1' or board[y + 2][x] == '1')):
         while (nb < max):
             if (board[y+ nb][x] == '-' and max <= 4):
                 max += 1
@@ -57,19 +57,12 @@ def check_direction(board, y, x, sizeGame):
             nb += 1
         if (max == 5 and size == 4):
             return (tmp, x)
-        elif (size == 4 and board[y + nb][x] != '2'):    
+        elif ((y + nb <= sizeGame) and (size == 4 and board[y + nb][x] != '2')):    
             return (y + nb, x)
         elif (size == 4 and y - 1 >= 0 and board[y - 1][x] == '-'):
             return (y - 1, x)
-    elif (board[y + 1][x + 1] == '1' or board[y + 2][x + 2] == '1'):
-        # if (x >= sizeGame - 3 and y >= sizeGame - 3):
-        #     print("bas droite")
-        #     return (-1, -1)
-        # if (y >= 3 and x >= 3):
-        #     print("bas droite 2")
-        #     return (-1, -1)
+    elif ((x + 1 < sizeGame and y + 1 < sizeGame) and (board[y + 1][x + 1] == '1' or board[y + 2][x + 2] == '1')):
         while (nb < max):
-            print("je suis al")
             if (board[y + nb][x + nb] == '-' and max <= 4):
                 max += 1
                 tmp = x + nb
@@ -83,6 +76,22 @@ def check_direction(board, y, x, sizeGame):
             return (y + nb, x + nb)
         if (size == 4 and y >= 1 and x >= 1 and board[y - 1][x - 1] == '-'):
             return (y - 1, x - 1)
+    elif ((x - 1 < sizeGame and y + 1 < sizeGame) and (board[y + 1][x - 1] == '1' or board[y + 2][x - 2] == '1')):
+        while (nb < max):
+            if (board[y + nb][x - nb] == '-' and max <= 4):
+                max += 1
+                tmp = x - nb
+                tmp2 = y + nb
+            if (board[y + nb][x - nb] == '1'):
+                size += 1
+            nb += 1
+        if (max == 5 and size == 4):
+            return (tmp2, tmp)
+        if (size == 4 and x - nb <= sizeGame and y + nb <= sizeGame and board[y + nb][x - nb] == '-'):
+            return (y + nb, x - nb)
+        if (size == 4 and y >= 1 and x >= 1 and board[y - 1][x - 1] == '-'):
+            return (y - 1, x - 1)
+    
         
     return (-1, -1)
 
@@ -104,17 +113,16 @@ def play():
             else:
                 line = line[1].split(',')
                 board[int(line[1])][int(line[0])] = 'X'
-            board[17][17] = '1'
-            board[18][18] = '1'
-            board[19][19] = '1'
-            board[16][16] = '1'
+            board[0][4] = '1'
+            board[1][3] = '1'
+            board[2][2] = '1'
+            board[3][1] = '1'
             value = False
             for y in range(sizeGame):
                 if value == True:
                     break
                 for x in range(sizeGame):
                     if board[y][x] == '1':
-                        print("hello")
                         i, j = check_direction(board, y, x, sizeGame)
                         print(i, j)
                         value = True
