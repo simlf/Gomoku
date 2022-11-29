@@ -134,6 +134,7 @@ def play():
     return 0
 
 def start():
+    global sizeGame
     start = input().split(' ')
     if len(start) == 2 and start[0] == 'START' and 5 <= int(start[1]) <= 20:
         print("OK", flush=True)
