@@ -100,6 +100,8 @@ def play():
     y = 0
     x = 0
     while 1:
+        i = 0
+        j = 0
         line = input().split(' ')
         if line[0] == 'BEGIN':
             start = 1
@@ -120,7 +122,7 @@ def play():
                 for x in range(sizeGame):
                     if board[y][x] == '1':
                         i, j = check_direction(board, y, x, sizeGame)
-                        print(i, j)
+                        # print(i, j)
                         value = True
                         y = sizeGame
                         break
