@@ -105,8 +105,9 @@ def play():
         line = input().split(' ')
         if line[0] == 'BEGIN':
             start = 1
-            board[4][4] = '1'
-            print("%d,%d" % (4, 4), flush=True)
+            i,j = randomPlay(board)
+            board[i][j] = '1'
+            print("%d,%d" % (j,i), flush=True)
         elif line[0] == 'END':
             return 84
         elif line[0] == 'TURN' or line[0] == 'BOARD':
