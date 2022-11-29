@@ -95,6 +95,108 @@ def check_direction(board, y, x, sizeGame):
         
     return (-1, -1)
 
+def defend(board, sizeGame):
+    print("enemy play")
+    value = False
+    nb = 0
+    size = 0
+    for y in range(sizeGame):
+        if value == True:
+            break
+        for x in range(sizeGame):
+            max = 3
+            if board[y][x] == '2':
+                # vertical
+                if (x + 1 < sizeGame and board[y][x + 1] == '2' or (x + 2 < sizeGame and board[y][x + 2] == "2")):
+                    while (nb < max):
+                        if (board[y][x + nb] == '-' and max <= 3):
+                            max += 1
+                            tmp = x + nb
+                        if (board[y][x + nb] == '2'):
+                            size += 1
+                        nb += 1
+                    if (max == 4 and board[y][tmp] == '-'):
+                        return (y, tmp)
+                    if (max == 3):
+                        if (x + nb > sizeGame):
+                            if (board[y][x - 1] == '-'):
+                                return (y, x - 1)
+                            return (-1, -1)
+                        elif (x - 1 >= 0 and board[y][x + nb] != '-'):
+                            return (y, x - 1)
+                        elif (board[y][x + nb] == '-'):
+                            return (y, x + nb)
+                # horizontal
+                if (y + 1 < sizeGame and board[y + 1][x] == '2' or (y + 2 < sizeGame and board[y + 2][x] == "2")):
+                    while (nb < max):
+                        if (board[y + nb][x] == '-' and max <= 3):
+                            max += 1
+                            tmp = y + nb
+                        if (board[y + nb][x] == '2'):
+                            size += 1
+                        nb += 1
+                    if (max == 4 and board[tmp][x] == '-'):
+                        return (tmp, x)
+                    if (max == 3):
+                        if (y + nb > sizeGame):
+                            if (board[y - 1][x] == '-'):
+                                return (y - 1, x)
+                            return (-1, -1)
+                        elif (y - 1 >= 0 and board[y + nb][x] != '-'):
+                            return (y - 1, x)
+                        elif (board[y + nb][x] == '-'):
+                            return (y + nb, x)
+                # diagonal left
+                if (y + 1 <= sizeGame and x + 1 <= sizeGame and board[y + 1][x + 1] == '2' or (y + 2 < sizeGame and x + 2 < sizeGame and board[y + 2][x + 2] == "2")):
+                    while (nb < max):
+                        if (y + nb <= sizeGame and x + nb <= sizeGame and board[y + nb][x + nb] == '-' and max <= 3):
+                            max += 1
+                            tmp = y + nb
+                            tmp2 = x + nb
+                        if (y + nb <= sizeGame and x + nb <= sizeGame and board[y + nb][x + nb] == '2'):
+                            size += 1
+                        nb += 1
+                    if (max == 4 and board[tmp][tmp2] == '-' and size == 3):
+                        return (tmp, tmp2)
+                    if (max == 3 and size == 3):
+                        print("je suis la")
+                        if (y + nb <= sizeGame and x + nb <= sizeGame):
+                            print("non la")
+                            if (board[y + nb][x + nb] == '-'):
+                                return (y + nb, x + nb)
+                            elif (y - 1 >= 0 and x >= 0 and board[y - 1][x - 1]):
+                                return (y - 1, x - 1)
+                        print(y + nb)
+                        if ((y + nb > sizeGame or x + nb > sizeGame) and (y - 1 >= 0 and x - 1 >= 0)):
+                            return (y - 1, x - 1)
+                # diagonal left
+                if (y + 1 <= sizeGame and x - 1 <= sizeGame and board[y + 1][x - 1] == '2' or (y + 2 < sizeGame and x + 2 < sizeGame and board[y + 2][x + 2] == "2")):
+                    while (nb < max):
+                        if (y + nb <= sizeGame and x - nb <= sizeGame and board[y + nb][x - nb] == '-' and max <= 3):
+                            max += 1
+                            tmp = y + nb
+                            tmp2 = x - nb
+                        if (y + nb <= sizeGame and x - nb <= sizeGame and board[y + nb][x - nb] == '2'):
+                            size += 1
+                        nb += 1
+                    if (max == 4 and board[tmp][tmp2] == '-' and size == 3):
+                        return (tmp, tmp2)
+                    if (max == 3 and size == 3):
+                        print("je suis la")
+                        if (y + nb <= sizeGame and x - nb <= sizeGame):
+                            print("non la")
+                            if (board[y + nb][x - nb] == '-'):
+                                return (y + nb, x - nb)
+                            elif (y - 1 >= 0 and x >= 0 and board[y - 1][x - 1]):
+                                return (y - 1, x - 1)
+                        print(y + nb)
+                        if ((y + nb > sizeGame or x - nb > sizeGame) and (y - 1 >= 0 and x - 1 >= 0)):
+                            return (y - 1, x - 1)
+                value = True
+                y = sizeGame
+                break
+    return (-1, -1)
+
 def play():
     board = [['-']*(sizeGame + 1) for i in range(sizeGame + 1)]
     y = 0
@@ -116,19 +218,24 @@ def play():
                 line = line[1].split(',')
                 board[int(line[1])][int(line[0])] = '2'
             value = False
+            board[0][3] = '2'
+            board[1][2] = '2'
+            board[3][0] = '2'
             for y in range(sizeGame):
                 if value == True:
                     break
                 for x in range(sizeGame):
                     if board[y][x] == '1':
                         i, j = check_direction(board, y, x, sizeGame)
-                        # print(i, j)
                         value = True
                         y = sizeGame
                         break
-            if (i < 0 and j < 0):
-                i, j = randomPlay(board)
+            if (i <= 0 and j <= 0):
+                i, j = defend(board, sizeGame)
+            # if (i < 0 and j < 0):
+            #     i, j = randomPlay(board)
             board[i][j] = '1'
+            printBoard(board)
             print("%d,%d" % (j,i), flush=True)
         if line[0] == 'RESTART':
             break
