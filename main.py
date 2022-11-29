@@ -218,9 +218,6 @@ def play():
                 line = line[1].split(',')
                 board[int(line[1])][int(line[0])] = '2'
             value = False
-            board[0][3] = '2'
-            board[1][2] = '2'
-            board[3][0] = '2'
             for y in range(sizeGame):
                 if value == True:
                     break
@@ -230,12 +227,11 @@ def play():
                         value = True
                         y = sizeGame
                         break
-            if (i <= 0 and j <= 0):
+            if (i < 0 and j < 0):
                 i, j = defend(board, sizeGame)
-            # if (i < 0 and j < 0):
-            #     i, j = randomPlay(board)
+            if (i < 0 and j < 0):
+                i, j = randomPlay(board)
             board[i][j] = '1'
-            printBoard(board)
             print("%d,%d" % (j,i), flush=True)
         if line[0] == 'RESTART':
             break
