@@ -28,7 +28,7 @@ def fillTheBoard(board):
         line = input().split(',')
     return board
 
-def check_direction(board, y, x):
+def check_direction(board, y, x, sizeGame):
     nb = 0
     size = 0
     max = 4
@@ -47,7 +47,7 @@ def check_direction(board, y, x):
             return (y, x + nb)
         elif (size == 4 and x - 1 >= 0 and board[y][x - 1] == '-'):
             return (y, x - 1)
-    elif board[y + 1][x] == '1':
+    elif board[y + 1][x] == '1' or board[y + 2][x] == '1':
         while (nb < max):
             if (board[y+ nb][x] == '-' and max <= 4):
                 max += 1
@@ -61,6 +61,36 @@ def check_direction(board, y, x):
             return (y + nb, x)
         elif (size == 4 and y - 1 >= 0 and board[y - 1][x] == '-'):
             return (y - 1, x)
+    elif (board[y + 1][x + 1] == '1' or board[y + 2][x + 2] == '1'):
+        # if (x >= sizeGame - 3 and y >= sizeGame - 3):
+        #     print("bas droite")
+        #     return (-1, -1)
+        # if (y >= 3 and x >= 3):
+        #     print("bas droite 2")
+        #     return (-1, -1)
+        while (nb < max):
+            print("je suis al")
+            if (board[y + nb][x + nb] == '-' and max <= 4):
+                max += 1
+                tmp = x + nb
+                tmp2 = y + nb
+            if (board[y + nb][x + nb] == '1'):
+                size += 1
+            nb += 1
+        if (max == 5 and size == 4):
+            print("al")
+            return (tmp2, tmp)
+        # if (size == 4 and (x - 1 >= 0 and y - 1 >= 0) and (y - nb >= sizeGame and x - nb >= sizeGame)):
+        #     print("encore la 2")
+        #     return (y - 1, x - 1)
+        # print(sizeGame)
+        if (size == 4 and x + nb <= sizeGame and y + nb <= sizeGame):
+            print("encore la")
+            return (y + nb, x + nb)
+        if (size == 4 and y >= 1 and x >= 1):
+            print("encore la")
+            return (y - 1, x - 1)
+        
     return (-1, -1)
 
 def play():
@@ -81,11 +111,10 @@ def play():
             else:
                 line = line[1].split(',')
                 board[int(line[1])][int(line[0])] = 'X'
-            board[4][0] = '1'
-            board[1][0] = '1'
-            board[2][0] = '1'
-            board[3][0] = '1'
-            board[5][0] = '2'
+            board[1][1] = '1'
+            board[5][5] = '1'
+            board[3][3] = '1'
+            board[4][4] = '1'
             value = False
             for y in range(sizeGame):
                 if value == True:
@@ -93,7 +122,7 @@ def play():
                 for x in range(sizeGame):
                     if board[y][x] == '1':
                         print("hello")
-                        i, j = check_direction(board, y, x)
+                        i, j = check_direction(board, y, x, sizeGame)
                         print(i, j)
                         value = True
                         y = sizeGame
