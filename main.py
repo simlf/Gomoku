@@ -128,7 +128,6 @@ def play():
                 board[i][j] = '1'
             else:
                 i, j = randomPlay(board)
-            printBoard(board)
             print("%d,%d" % (i, j), flush=True)
         if line[0] == 'RESTART':
             break
