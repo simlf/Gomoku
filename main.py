@@ -22,9 +22,9 @@ def fillTheBoard(board):
     line = input().split(',')
     while line[0] != 'DONE':
         if int(line[2]) == 1:
-            board[int(line[1])][int(line[0])] = 'O'
+            board[int(line[1])][int(line[0])] = '1'
         else:
-            board[int(line[1])][int(line[0])] = 'X'
+            board[int(line[1])][int(line[0])] = '2'
         line = input().split(',')
     return board
 
@@ -103,7 +103,7 @@ def play():
         line = input().split(' ')
         if line[0] == 'BEGIN':
             start = 1
-            board[4][4] = 'O'
+            board[4][4] = '1'
             print("%d,%d" % (4, 4), flush=True)
         elif line[0] == 'END':
             return 84
@@ -112,11 +112,7 @@ def play():
                 board = fillTheBoard(board)
             else:
                 line = line[1].split(',')
-                board[int(line[1])][int(line[0])] = 'X'
-            board[0][4] = '1'
-            board[1][3] = '1'
-            board[2][2] = '1'
-            board[3][1] = '1'
+                board[int(line[1])][int(line[0])] = '2'
             value = False
             for y in range(sizeGame):
                 if value == True:
@@ -130,8 +126,10 @@ def play():
                         break
             if (i >= 0 or j >= 0):
                 board[i][j] = '1'
+            else:
+                i, j = randomPlay(board)
             printBoard(board)
-            print("%d,%d" % (j, i), flush=True)
+            print("%d,%d" % (i, j), flush=True)
         if line[0] == 'RESTART':
             break
     return 0
