@@ -78,17 +78,10 @@ def check_direction(board, y, x, sizeGame):
                 size += 1
             nb += 1
         if (max == 5 and size == 4):
-            print("al")
             return (tmp2, tmp)
-        # if (size == 4 and (x - 1 >= 0 and y - 1 >= 0) and (y - nb >= sizeGame and x - nb >= sizeGame)):
-        #     print("encore la 2")
-        #     return (y - 1, x - 1)
-        # print(sizeGame)
-        if (size == 4 and x + nb <= sizeGame and y + nb <= sizeGame):
-            print("encore la")
+        if (size == 4 and x + nb <= sizeGame and y + nb <= sizeGame and board[y + nb][x + nb] == '-'):
             return (y + nb, x + nb)
-        if (size == 4 and y >= 1 and x >= 1):
-            print("encore la")
+        if (size == 4 and y >= 1 and x >= 1 and board[y - 1][x - 1] == '-'):
             return (y - 1, x - 1)
         
     return (-1, -1)
@@ -111,10 +104,10 @@ def play():
             else:
                 line = line[1].split(',')
                 board[int(line[1])][int(line[0])] = 'X'
-            board[1][1] = '1'
-            board[5][5] = '1'
-            board[3][3] = '1'
-            board[4][4] = '1'
+            board[17][17] = '1'
+            board[18][18] = '1'
+            board[19][19] = '1'
+            board[16][16] = '1'
             value = False
             for y in range(sizeGame):
                 if value == True:
