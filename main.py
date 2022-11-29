@@ -122,7 +122,6 @@ def play():
                 for x in range(sizeGame):
                     if board[y][x] == '1':
                         i, j = check_direction(board, y, x, sizeGame)
-                        # print(i, j)
                         value = True
                         y = sizeGame
                         break
