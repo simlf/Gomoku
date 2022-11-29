@@ -127,7 +127,8 @@ def play():
                         y = sizeGame
                         break
             if (i < 0 and j < 0):
-                i, j = randomPlay(board)
+                while board[i][j] != '-' and i == - 1 and j == -1:
+                    i, j = randomPlay(board)
             print("%d,%d" % (j,i), flush=True)
         if line[0] == 'RESTART':
             break
