@@ -100,8 +100,8 @@ def play():
     y = 0
     x = 0
     while 1:
-        i = 0
-        j = 0
+        i = -1
+        j = -1
         line = input().split(' ')
         if line[0] == 'BEGIN':
             start = 1
