@@ -159,14 +159,11 @@ def defend(board, sizeGame):
                     if (max == 4 and board[tmp][tmp2] == '-' and size == 3):
                         return (tmp, tmp2)
                     if (max == 3 and size == 3):
-                        print("je suis la")
                         if (y + nb <= sizeGame and x + nb <= sizeGame):
-                            print("non la")
                             if (board[y + nb][x + nb] == '-'):
                                 return (y + nb, x + nb)
                             elif (y - 1 >= 0 and x >= 0 and board[y - 1][x - 1]):
                                 return (y - 1, x - 1)
-                        print(y + nb)
                         if ((y + nb > sizeGame or x + nb > sizeGame) and (y - 1 >= 0 and x - 1 >= 0)):
                             return (y - 1, x - 1)
                 # diagonal left
@@ -182,14 +179,11 @@ def defend(board, sizeGame):
                     if (max == 4 and board[tmp][tmp2] == '-' and size == 3):
                         return (tmp, tmp2)
                     if (max == 3 and size == 3):
-                        print("je suis la")
                         if (y + nb <= sizeGame and x - nb <= sizeGame):
-                            print("non la")
                             if (board[y + nb][x - nb] == '-'):
                                 return (y + nb, x - nb)
                             elif (y - 1 >= 0 and x >= 0 and board[y - 1][x - 1]):
                                 return (y - 1, x - 1)
-                        print(y + nb)
                         if ((y + nb > sizeGame or x - nb > sizeGame) and (y - 1 >= 0 and x - 1 >= 0)):
                             return (y - 1, x - 1)
                 value = True
