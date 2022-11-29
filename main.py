@@ -43,7 +43,7 @@ def check_direction(board, y, x, sizeGame):
             nb += 1
         if (max == 5 and size == 4):
             return (y, tmp)
-        elif ((x + nb <= sizeGame) and (size == 4 and board[y][x + nb] != '2')):    
+        elif ((x + nb <= sizeGame) and (size == 4 and board[y][x + nb] != '2')):
             return (y, x + nb)
         elif (size == 4 and x - 1 >= 0 and board[y][x - 1] == '-'):
             return (y, x - 1)
@@ -57,7 +57,7 @@ def check_direction(board, y, x, sizeGame):
             nb += 1
         if (max == 5 and size == 4):
             return (tmp, x)
-        elif ((y + nb <= sizeGame) and (size == 4 and board[y + nb][x] != '2')):    
+        elif ((y + nb <= sizeGame) and (size == 4 and board[y + nb][x] != '2')):
             return (y + nb, x)
         elif (size == 4 and y - 1 >= 0 and board[y - 1][x] == '-'):
             return (y - 1, x)
@@ -91,8 +91,8 @@ def check_direction(board, y, x, sizeGame):
             return (y + nb, x - nb)
         if (size == 4 and y >= 1 and x >= 1 and board[y - 1][x - 1] == '-'):
             return (y - 1, x - 1)
-    
-        
+
+
     return (-1, -1)
 
 def defend(board, sizeGame):
@@ -202,13 +202,14 @@ def play():
     y = 0
     x = 0
     while 1:
-        i = 0
-        j = 0
+        i = -1
+        j = -1
         line = input().split(' ')
         if line[0] == 'BEGIN':
             start = 1
-            board[4][4] = '1'
-            print("%d,%d" % (4, 4), flush=True)
+            i,j = randomPlay(board)
+            board[i][j] = '1'
+            print("%d,%d" % (j,i), flush=True)
         elif line[0] == 'END':
             return 84
         elif line[0] == 'TURN' or line[0] == 'BOARD':
@@ -238,6 +239,7 @@ def play():
     return 0
 
 def start():
+    global sizeGame
     start = input().split(' ')
     if len(start) == 2 and start[0] == 'START' and 5 <= int(start[1]) <= 20:
         print("OK", flush=True)
@@ -258,5 +260,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
-
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("ERROR", flush=True)
+        exit(0)
