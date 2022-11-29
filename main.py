@@ -124,11 +124,9 @@ def play():
                         value = True
                         y = sizeGame
                         break
-            if (i >= 0 or j >= 0):
-                board[i][j] = '1'
-            else:
+            if (i < 0 and j < 0):
                 i, j = randomPlay(board)
-            print("%d,%d" % (i, j), flush=True)
+            print("%d,%d" % (j,i), flush=True)
         if line[0] == 'RESTART':
             break
     return 0
