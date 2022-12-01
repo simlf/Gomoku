@@ -96,7 +96,6 @@ def check_direction(board, y, x, sizeGame):
     return (-1, -1)
 
 def defend(board, sizeGame):
-    print("enemy play")
     value = False
     nb = 0
     size = 0
