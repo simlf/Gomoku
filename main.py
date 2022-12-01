@@ -123,7 +123,9 @@ def defend(board, sizeGame):
                                 return (y, x - 1)
                             return (-1, -1)
                         elif (x - 1 >= 0 and board[y][x + nb] != '-'):
-                            return (y, x - 1)
+                            if (board[y][x - 1] == '-'):
+                                return (y, x - 1)
+                            return (-1, -1)
                         elif (board[y][x + nb] == '-'):
                             return (y, x + nb)
                 # horizontal
@@ -143,7 +145,9 @@ def defend(board, sizeGame):
                                 return (y - 1, x)
                             return (-1, -1)
                         elif (y - 1 >= 0 and board[y + nb][x] != '-'):
-                            return (y - 1, x)
+                            if (board[y - 1][x] == '-'):
+                                return (y - 1, x)
+                            return (-1, -1)
                         elif (board[y + nb][x] == '-'):
                             return (y + nb, x)
                 # diagonal left
@@ -162,9 +166,9 @@ def defend(board, sizeGame):
                         if (y + nb <= sizeGame and x + nb <= sizeGame):
                             if (board[y + nb][x + nb] == '-'):
                                 return (y + nb, x + nb)
-                            elif (y - 1 >= 0 and x >= 0 and board[y - 1][x - 1]):
+                            elif (y - 1 >= 0 and x >= 0 and board[y - 1][x - 1] == '-'):
                                 return (y - 1, x - 1)
-                        if ((y + nb > sizeGame or x + nb > sizeGame) and (y - 1 >= 0 and x - 1 >= 0)):
+                        if ((y + nb > sizeGame or x + nb > sizeGame) and (y - 1 >= 0 and x - 1 >= 0) and board[y - 1][x - 1] == '-'):
                             return (y - 1, x - 1)
                 # diagonal left
                 if (y + 1 <= sizeGame and x - 1 <= sizeGame and board[y + 1][x - 1] == '2' or (y + 2 < sizeGame and x + 2 < sizeGame and board[y + 2][x + 2] == "2")):
@@ -182,10 +186,10 @@ def defend(board, sizeGame):
                         if (y + nb <= sizeGame and x - nb <= sizeGame):
                             if (board[y + nb][x - nb] == '-'):
                                 return (y + nb, x - nb)
-                            elif (y - 1 >= 0 and x >= 0 and board[y - 1][x - 1]):
-                                return (y - 1, x - 1)
-                        if ((y + nb > sizeGame or x - nb > sizeGame) and (y - 1 >= 0 and x - 1 >= 0)):
-                            return (y - 1, x - 1)
+                            elif (y - 1 >= 0 and x >= 0 and board[y - 1][x - 1] == '-'):
+                                return (y - 1, x + 1)
+                        if ((y + nb > sizeGame or x - nb > sizeGame) and (y - 1 >= 0 and x - 1 >= 0) and board[y - 1][x + 1] == '-'):
+                            return (y - 1, x + 1)
                 value = True
                 y = sizeGame
                 break
