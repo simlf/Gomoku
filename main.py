@@ -116,7 +116,7 @@ def defend(board, sizeGame):
                     if (size >= 3):
                         if (jump == True):
                             return (y, tmp)
-                        if (x + nb <= sizeGame and board[y][x + nb] != '-' and size == 4):
+                        if (x + nb <= sizeGame and board[y][x + nb] != '-' and size >= 4):
                             if (x - 1 >= 0 and board[y][x - 1] == '-'):
                                 return (y, x - 1)
                         if (x + nb == sizeGame + 1 and board[y][x - 1] == '-'):
@@ -135,7 +135,7 @@ def defend(board, sizeGame):
                     if (size >= 3):
                         if (jump == True):
                             return (tmp, x)
-                        if (y + nb <= sizeGame and board[y + nb][x] != '-' and size == 4):
+                        if (y + nb <= sizeGame and board[y + nb][x] != '-' and size >= 4):
                             if (y - 1 >= 0 and board[y - 1][x] == '-'):
                                 return (y - 1, x)
                         if (y + nb == sizeGame + 1 and board[y - 1][x] == '-'):
@@ -155,7 +155,7 @@ def defend(board, sizeGame):
                     if (size >= 3):
                         if (jump == True):
                             return (tmp2, tmp)
-                        if (x + nb <= sizeGame and y + nb <= sizeGame and board[y + nb][x + nb] != '-' and size == 4):
+                        if (x + nb <= sizeGame and y + nb <= sizeGame and board[y + nb][x + nb] != '-' and size >= 4):
                             if (x - 1 >= 0 and y - 1 >= 0 and board[y - 1][x - 1] == '-'):
                                 return (y - 1, x - 1)
                         if (x + nb == sizeGame + 1 and y + nb == sizeGame + 1 and board[y - 1][x - 1] == '-'):
@@ -175,7 +175,7 @@ def defend(board, sizeGame):
                     if (size >= 3):
                         if (jump == True):
                             return (tmp2, tmp)
-                        if (x - nb >= 0 and y + nb <= sizeGame and board[y + nb][x - nb] != '-' and size == 4):
+                        if (x - nb >= 0 and y + nb <= sizeGame and board[y + nb][x - nb] != '-' and size >= 4):
                             if (x + 1 <= sizeGame and y - 1 >= 0 and board[y - 1][x + 1] == '-'):
                                 return (y - 1, x + 1)
                         if (x - nb <= 0 and y + nb == sizeGame + 1 and board[y - 1][x + 1] == '-'):
